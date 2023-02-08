@@ -1,0 +1,116 @@
+body {
+  margin: 0;
+}
+
+@font-face {
+  font-family: HelveticaNeue;
+  src: url(/src/components/font/HelveticaNeue.ttc);
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f900;
+}
+.head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.spn-1 {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+}
+.spn-2 {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: right;
+  color: #1a1a1a;
+}
+.spn-3 {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.name-lastname {
+  display: flex;
+  flex-direction: row;
+  margin-top: 69px;
+}
+.submit-field-1 {
+  margin-left: 126px;
+  display: flex;
+  flex-direction: column;
+  padding-right: 56px;
+}
+.spn-4 {
+  margin-top: 8px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #2e2e2e;
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.inp-1 {
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+  width: 371px;
+  height: 48px;
+  box-sizing: border-box;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+#files {
+  visibility: hidden;
+}
+.photo-upload {
+  display: flex;
+  flex-direction: row;
+  margin-top: 46px;
+  align-items: center;
+  margin-left: 122px;
+}
+.spn-5 {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #1a1a1a;
+}
+.btn {
+  margin-left: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px 10px;
+  gap: 10px;
+  background: #0e80bf;
+  border-radius: 4px;
+  color: white;
+}
