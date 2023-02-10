@@ -5,6 +5,7 @@ import Resume from "../Resume/Resume";
 import Experience from "./Form/Experience";
 import "./main.css";
 import { ROUTES } from "../constants";
+import MainProvider from "./MainContext";
 
 const router = [
   {
@@ -22,12 +23,14 @@ const router = [
 export default function Main() {
   return (
     <div className="main">
-      <Routes>
-        {router.map((route) => (
-          <Route {...route} />
-        ))}
-      </Routes>
-      <Resume />
+      <MainProvider>
+        <Routes>
+          {router.map((route) => (
+            <Route {...route} />
+          ))}
+        </Routes>
+        <Resume />
+      </MainProvider>
     </div>
   );
 }

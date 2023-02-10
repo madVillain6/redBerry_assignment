@@ -1,105 +1,105 @@
-import { useFormik } from "formik";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import * as Yup from "yup";
 import { ROUTES } from "../../constants";
 import "../Form/personalInfo.css";
-
-const PersonalInfoSchema = Yup.object().shape({
-  name: Yup.string().min(2, "Too Short").required("Required"),
-  surname: Yup.string().min(2, "Too Short").required("Required"),
-  aboutMe: Yup.string(),
-  mobile: Yup.string().min(9).max(13),
-  email: Yup.string().email("Invalid email address"),
-});
+import Back from "../../images/Group 4.svg";
+import { MainContext } from "../MainContext";
+import { Input } from "../../input";
 
 export default function PersonalInfo() {
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      surname: "",
-      aboutMe: "",
-      mobile: "",
-      email: "",
-    },
-    onSubmit: () => navigate(ROUTES.getMainExperiencePath()),
-    validationSchema: PersonalInfoSchema,
-  });
   const navigate = useNavigate();
-  console.log("formik", formik.values, formik.errors);
-
+  const { personalInfoForm } = useContext(MainContext);
+  console.log(
+    "personalInfoForm",
+    personalInfoForm.values,
+    personalInfoForm.errors
+  );
   return (
     <form className="form">
       <div className="head">
-        <button> back </button>
+        <button className="btn-0" onClick={() => navigate(ROUTES.landingPage)}>
+          <img src={Back} alt="back" />
+        </button>
         <span className="spn-1">პირადი ინფო</span>
         <span className="spn-2">1/3</span>
+        <div className="line-1"></div>
       </div>
-      <div className="line"></div>
       <div className="name-lastname">
         <div className="submit-field-1">
           <span className="spn-3"> სახელი</span>
-          <input
+          <Input
             className="inp-1"
             required
             type="text"
             placeholder="გია"
             name="name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
+            value={personalInfoForm.values.name}
+            onChange={personalInfoForm.handleChange}
           />
           <span className="spn-4">მინიმუმ 2 ასო, ქართული ასოები</span>
         </div>
         <div className="submit-field">
           <span className="spn-3"> გვარი</span>
-          <input
+          <Input
             className="inp-1"
             type="text"
             placeholder="მიქაძე"
             name="surname"
-            value={formik.values.surname}
-            onChange={formik.handleChange}
+            value={personalInfoForm.values.surname}
+            onChange={personalInfoForm.handleChange}
           />
           <span className="spn-4">მინიმუმ 2 ასო, ქართული ასოები</span>
         </div>
       </div>
       <div className="photo-upload">
         <span className="spn-5">პირადი ფოტოს ატვირთვა</span>
-        <label for="files" class="btn">
+        <label htmlFor="files" className="btn">
           ატვირთვა
         </label>
         <input id="files" type="file" />
       </div>
-      <div>
+      <div className="txt-area">
         <span>ჩემ შესახებ (არასავალდებულო)</span>
         <textarea
+          className="txt-area-1"
           placeholder="ზოგადი ინფო შენ შესახებ"
           name="aboutMe"
-          onChange={formik.handleChange}
-          value={formik.values.aboutMe}
+          onChange={personalInfoForm.handleChange}
+          value={personalInfoForm.values.aboutMe}
         />
       </div>
-      <div>
-        <input
+      <div className="input-field-2">
+        <span> ელ. ფოსტა</span>
+        <Input
+          className="input-2"
+          placeholder="anzorr666@redberry.ge"
           type="email"
           name="email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-        ></input>
-        <span>აკრიფეთ თქენი ელ. ფოსტა</span>
+          value={personalInfoForm.values.email}
+          onChange={personalInfoForm.handleChange}
+        />
+        <span className="spn-4">უნდა მთავრდებოდეს @redberry.ge-ით</span>
       </div>
-      <div>
+      <div className="input-field-2">
+        <span> მობილურის ნომერი</span>
+
         <input
+          className="input-2"
+          placeholder="+995 551 12 34 56"
           type="text"
           name="mobile"
-          value={formik.values.mobile}
-          onChange={formik.handleChange}
-        ></input>
-        <span>აკრიფეთ თქენი მობილურის ნომერი</span>
+          value={personalInfoForm.values.mobile}
+          onChange={personalInfoForm.handleChange}
+        />
+
+        <span className="spn-4">
+          უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს
+        </span>
       </div>
       {/* <button onClick={() => navigate(ROUTES.getMainExperiencePath())}> */}
-      <button onClick={formik.handleSubmit}>შემდეგი</button>
+      <button className="btn-3" onClick={personalInfoForm.handleSubmit}>
+        შემდეგი
+      </button>
     </form>
   );
 }
