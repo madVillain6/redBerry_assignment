@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
-import PersonalInfo from "./Form/PersonalInfo";
-import Resume from "../Resume/Resume";
-import Experience from "./Form/Experience";
+import PersonalInfo from "./sub-pages/personal-info/PersonalInfo";
+import Resume from "./Resume";
+import Experience from "./sub-pages/experience/Experience";
 import "./main.css";
-import { ROUTES } from "../constants";
-import MainProvider from "./MainContext";
-import Education from "./Form/Education";
+import { ROUTES } from "../../constants";
+import MainProvider from "./main-context";
+import Education from "./sub-pages/education/Education";
 
 const router = [
   {

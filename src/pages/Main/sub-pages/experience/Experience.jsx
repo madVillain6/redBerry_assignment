@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../constants";
-import { MainContext } from "../MainContext";
-import * as S from "../../input";
-import Input from "../../input/Input";
-import Back from "../../images/Group 4.svg";
+import { ROUTES } from "../../../../constants";
+import { MainContext } from "../../main-context";
+import * as S from "../../../../components/input";
+import Input from "../../../../components/input/Input";
+import Back from "../../../../images/Group 4.svg";
 
 export default function Experience() {
   const navigate = useNavigate();

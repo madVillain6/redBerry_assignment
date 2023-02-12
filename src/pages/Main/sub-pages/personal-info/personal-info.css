@@ -4,7 +4,7 @@ body {
 
 @font-face {
   font-family: HelveticaNeue;
-  src: url(/src/components/font/HelveticaNeue.ttc);
+  src: url(/src/font/HelveticaNeue.ttc);
 }
 .form {
   display: flex;

@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { ROUTES } from "../constants";
+import { ROUTES } from "../../../../constants";
 
 const ERROR_MESSAGES = {
   min: "მინიმუმ 2 სიმბოლო",

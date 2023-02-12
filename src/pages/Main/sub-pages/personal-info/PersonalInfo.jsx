@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../constants";
-import "../Form/personalInfo.css";
-import Back from "../../images/Group 4.svg";
-import { MainContext } from "../MainContext";
-import Input2 from "../../input/Input";
-import * as S from "../../input";
+import { ROUTES } from "../../../../constants";
+import "./personal-info.css";
+import Back from "../../../../images/Group 4.svg";
+import { MainContext } from "../../main-context";
+import Input2 from "../../../../components/input/Input";
+import * as S from "../../../../components/input";
 
 export default function PersonalInfo() {
   const navigate = useNavigate();

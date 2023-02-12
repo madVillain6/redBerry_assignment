@@ -1,9 +1,9 @@
 import React from "react";
-import "./LandingPage.css";
-import Logo from "../images/LOGO-02 3.svg";
-import Stamp from "../images/LOGO-40 1.svg";
 import { useNavigate } from "react-router-dom";
-import * as S from "../../components/input";
+import "./landing-page.css";
+import Logo from "../../images/LOGO-02 3.svg";
+import Stamp from "../../images/LOGO-40 1.svg";
+
 export default function LandingPage() {
   const navigate = useNavigate();
   return (

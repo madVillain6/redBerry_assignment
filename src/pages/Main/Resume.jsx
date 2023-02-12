@@ -1,7 +1,6 @@
 import React, { Fragment, useContext } from "react";
-import { MainContext } from "../Main/MainContext";
+import { MainContext } from "./main-context";
 import * as S from "../../components/input";
-import { useEducationForm } from "../Main/useEducationForm";
 
 const Resume = () => {
   const { experienceForm, personalInfoForm, imagePreview, educationForm } =

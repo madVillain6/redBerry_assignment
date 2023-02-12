@@ -3,7 +3,7 @@ body {
 }
 @font-face {
   font-family: HelveticaNeue;
-  src: url(/src/components/font/HelveticaNeue.ttc);
+  src: url(/src/font/HelveticaNeue.ttc);
 }
 .line {
   border: 1px solid #1a1a1a;
@@ -15,7 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-image: url(/src/components/images/background1.png);
+  background-image: url(/src/images/background1.png);
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;

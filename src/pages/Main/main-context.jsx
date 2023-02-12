@@ -1,7 +1,7 @@
 import { createContext, useCallback, useState } from "react";
-import { useExperienceForm } from "./useExperienceForm";
-import { useEducationForm } from "./useEducationForm";
-import { usePersonalInfoForm } from "./usePersonalInfoForm";
+import { useExperienceForm } from "./sub-pages/experience/useExperienceForm";
+import { useEducationForm } from "./sub-pages/education/useEducationForm";
+import { usePersonalInfoForm } from "./sub-pages/personal-info/usePersonalInfoForm";
 
 export const MainContext = createContext({
   personalInfoForm: { values: {}, errors: {}, touched: {} },

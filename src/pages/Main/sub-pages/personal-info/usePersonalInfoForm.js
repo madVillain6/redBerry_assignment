@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { ROUTES } from "../constants";
+import { ROUTES } from "../../../../constants";
 
 const ERROR_MESSAGES = {
   name: "მინიმუმ 2 ასო, ქართული ასოები",
@@ -58,7 +58,7 @@ export const usePersonalInfoForm = () => {
 
   const form = useFormik({
     initialValues,
-    onSubmit: () => navigate(ROUTES.getMainResumePath()),
+    onSubmit: () => navigate(ROUTES.getMainExperiencePath()),
     validationSchema: PersonalInfoSchema,
     enableReinitialize: true,
   });
