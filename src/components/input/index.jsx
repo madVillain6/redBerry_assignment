@@ -10,7 +10,6 @@ export const Input = styled.input`
   ${flex}
   border: 1px solid #000;
   background-color: whitesmoke;
-  color: ${({ type }) => (type === "email" ? "red" : "green")};
 `;
 
 export const HeadSpan = styled.span`
@@ -85,6 +84,7 @@ export const Form = styled.form`
 `;
 export const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 60%;
   height: 100%;
@@ -294,10 +294,12 @@ export const Picture = styled.div`
   width: 200px;
   height: 200px;
   border-radius: 133px;
-  background-color: green;
   position: absolute;
   left: 78%;
   top: 9%;
+  background-image: ${(props) => `url(${props.img})`};
+  background-size: cover;
+  background-position: center;
 `;
 export const GrayLine1 = styled.div`
   border: 1px solid #c1c1c1;

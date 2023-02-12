@@ -3,8 +3,20 @@ export const ROUTES = {
   personalInfo: "/personal-info/*",
   mainPersonalInfo: "/",
   mainExperience: "/experience",
+  mainEducation: "/education",
+  mainResume: "/resume",
+
+  _getMainPath(route) {
+    return this.personalInfo.replace("/*", route);
+  },
 
   getMainExperiencePath() {
-    return this.personalInfo.replace("/*", this.mainExperience);
+    return this._getMainPath(this.mainExperience);
+  },
+  getMainEducationPath() {
+    return this._getMainPath(this.mainEducation);
+  },
+  getMainResumePath() {
+    return this._getMainPath(this.mainResume);
   },
 };

@@ -3,7 +3,7 @@ import "./LandingPage.css";
 import Logo from "../images/LOGO-02 3.svg";
 import Stamp from "../images/LOGO-40 1.svg";
 import { useNavigate } from "react-router-dom";
-
+import * as S from "../../components/input";
 export default function LandingPage() {
   const navigate = useNavigate();
   return (

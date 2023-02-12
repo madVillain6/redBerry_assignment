@@ -15,7 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  /* background-image: url(/src/components/images/background.svg); */
+  background-image: url(/src/components/images/background1.png);
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;

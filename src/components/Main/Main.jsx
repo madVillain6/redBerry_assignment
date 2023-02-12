@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 import PersonalInfo from "./Form/PersonalInfo";
 import Resume from "../Resume/Resume";
@@ -6,6 +6,7 @@ import Experience from "./Form/Experience";
 import "./main.css";
 import { ROUTES } from "../constants";
 import MainProvider from "./MainContext";
+import Education from "./Form/Education";
 
 const router = [
   {
@@ -17,6 +18,16 @@ const router = [
     key: 1,
     path: ROUTES.mainExperience,
     element: <Experience />,
+  },
+  {
+    key: 2,
+    path: ROUTES.mainEducation,
+    element: <Education />,
+  },
+  {
+    key: 3,
+    path: ROUTES.mainResume,
+    element: <Fragment />,
   },
 ];
 

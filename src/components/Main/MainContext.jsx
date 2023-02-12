@@ -1,68 +1,44 @@
-import { useFormik } from "formik";
 import { createContext, useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
-import { ROUTES } from "../constants";
-
-const getDefaultExperience = () => ({
-  position: "",
-  employer: "",
-  startDate: "",
-  endDate: "",
-  description: "",
-});
-
-const PersonalInfoSchema = Yup.object().shape({
-  name: Yup.string().min(2, "Too Short").required("Required"),
-  surname: Yup.string().min(2, "Too Short").required("Required"),
-  aboutMe: Yup.string(),
-  mobile: Yup.string().min(9).max(13),
-  email: Yup.string().email("Invalid email address"),
-});
+import { useExperienceForm } from "./useExperienceForm";
+import { useEducationForm } from "./useEducationForm";
+import { usePersonalInfoForm } from "./usePersonalInfoForm";
 
 export const MainContext = createContext({
-  experiences: [],
-  addExperience: () => {},
-  updateExperience: () => {},
-  personalInfoForm: { values: {}, errors: {} },
+  personalInfoForm: { values: {}, errors: {}, touched: {} },
+  imagePreview: undefined,
+  handleImageUplad: () => {},
+  experienceForm: { values: {}, errors: {}, touched: {} },
+  educationForm: { values: {}, errors: {}, touched: {} },
 });
 
 const MainProvider = ({ children }) => {
-  const navigate = useNavigate();
-
-  const [experiences, setExperiences] = useState([getDefaultExperience()]);
-
-  const addExperience = useCallback(() => {
-    setExperiences([...experiences, getDefaultExperience()]);
-  }, [experiences]);
-
-  const updateExperience = useCallback(
-    (index, field, value) => {
-      experiences[index][field] = value;
-      setExperiences([...experiences]);
-    },
-    [experiences]
+  const [imagePreview, setImagePreview] = useState(
+    localStorage.getItem("image") || ""
   );
 
-  const personalInfoForm = useFormik({
-    initialValues: {
-      name: "",
-      surname: "",
-      aboutMe: "",
-      mobile: "",
-      email: "",
-    },
-    onSubmit: () => navigate(ROUTES.getMainExperiencePath()),
-    validationSchema: PersonalInfoSchema,
-  });
+  const handleImageUplad = useCallback((file) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+      localStorage.setItem("image", reader.result);
+    };
+    reader.readAsDataURL(file);
+  }, []);
+
+  const personalInfoForm = usePersonalInfoForm();
+
+  const experienceForm = useExperienceForm();
+
+  const educationForm = useEducationForm();
 
   return (
     <MainContext.Provider
       value={{
-        experiences,
-        addExperience,
-        updateExperience,
         personalInfoForm,
+        imagePreview,
+        handleImageUplad,
+        experienceForm,
+        educationForm,
       }}
     >
       {children}

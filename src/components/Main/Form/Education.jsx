@@ -1,13 +1,24 @@
-import React, { useCallback } from "react";
+import React from "react";
 import Back from "../../images/Group 4.svg";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants";
 import { MainContext } from "../MainContext";
 import * as S from "../../input";
 import Dropdown from "./DropDown";
-import { date } from "yup";
+import Input from "../../input/Input";
 
 export default function Education() {
+  const {
+    educationForm: {
+      touched,
+      errors,
+      values,
+      setValues,
+      handleChange,
+      handleSubmit,
+    },
+  } = useContext(MainContext);
   const options = [
     { value: "საშუალო სკოლის დიპლომი", label: "საშუალო სკოლის დიპლომი" },
     {
@@ -22,56 +33,94 @@ export default function Education() {
     { value: "კოლეჯი (ხარისხის გარეშე)", label: "კოლეჯი (ხარისხის გარეშე)" },
     { value: "სხვა", label: "სხვა" },
   ];
+  const navigate = useNavigate();
   return (
     <S.Wrapper>
-      <S.Form>
+      <S.Wrapper>
         <S.HeadDiv>
-          <S.HeadBtn /*</S.HeadDiv>onClick={() => navigate(ROUTES.landingPage)}*/
-          >
+          <S.HeadBtn onClick={() => navigate(ROUTES.getMainExperiencePath())}>
             <img src={Back} alt="back" />
           </S.HeadBtn>
           <S.HeadSpan>განათლება</S.HeadSpan>
           <S.HeadSpan2>3/3</S.HeadSpan2>
         </S.HeadDiv>
         <S.BlackLine></S.BlackLine>
-        <S.InputField>
-          <S.Span1>სასწავლებელი</S.Span1>
-          <S.StyledInput
-            type="text"
-            placeholder="თანამდებობა"
-            size="lg"
-            /*value={experiences[index].position}
-            onChange={(e) =>
-              updateExperience(index, "position", e.target.value)
-            }
-            <Dropdown options={options} />
-            
-            */
-          />
-          <S.Span2>მინიმუმ 2 სიმბოლო</S.Span2>
-        </S.InputField>
-        <S.SmInputField>
-          <S.InputField>
-            <S.Span1>ხარისხი</S.Span1>
-            <S.SmInput type="date" />
-          </S.InputField>
-          <S.InputField>
-            <S.Span1>დაწყების რიცხვი</S.Span1>
-            <S.SmInput type="date" />
-          </S.InputField>
-        </S.SmInputField>
-        <S.InputField>
-          <S.Span1>აღწერა</S.Span1>
-          <S.TextArea />
-        </S.InputField>
+
+        {values.map((education, index) => {
+          const itemErrors = errors[index] || {};
+          const itemTouched = touched[index] || {};
+          return (
+            <form key={index}>
+              <Input
+                label="სასწავლებელი"
+                type="text"
+                placeholder="სასწავლებელი"
+                name={`${index}.institute`}
+                value={education.institute}
+                onChange={handleChange}
+                touched={itemTouched.institute}
+                error={itemErrors.institute}
+              />
+
+              <Dropdown
+                options={options}
+                placeholder={"ხარისხი"}
+                name={`${index}.degree`}
+                value={`${index}.degree`}
+                onChange={handleChange}
+              />
+
+              <Input
+                label="დასრულების რიცხვი"
+                type="date"
+                placeholder="დასრულების რიცხვი"
+                name={`${index}.due_date`}
+                value={education.due_date}
+                onChange={handleChange}
+                touched={itemTouched.due_date}
+                error={itemErrors.due_date}
+              />
+              <Input
+                label="აღწერა"
+                type="textarea"
+                placeholder="აღწერა"
+                name={`${index}.description`}
+                value={education.description}
+                onChange={handleChange}
+                touched={itemTouched.description}
+                error={itemErrors.description}
+              />
+              <S.GrayLine></S.GrayLine>
+            </form>
+          );
+        })}
 
         <S.GrayLine></S.GrayLine>
-        <S.BlueBtn>მეტი გამოცდილების დამატება</S.BlueBtn>
+        <S.BlueBtn
+          type="button"
+          onClick={() =>
+            setValues([
+              ...values,
+              {
+                institute: "",
+                degree: "",
+                due_date: "",
+                description: "",
+              },
+            ])
+          }
+        >
+          სხვა სასწავლებლის დამატება
+        </S.BlueBtn>
         <S.NavDiv>
-          <S.NavBtn>უკან</S.NavBtn>
-          <S.NavBtn>დასრულება</S.NavBtn>
+          <S.NavBtn onClick={() => navigate(ROUTES.getMainExperiencePath())}>
+            უკან
+          </S.NavBtn>
+          <S.NavBtn type="button" onClick={handleSubmit}>
+            დასრულება
+          </S.NavBtn>
         </S.NavDiv>
-      </S.Form>
+      </S.Wrapper>
     </S.Wrapper>
   );
 }
