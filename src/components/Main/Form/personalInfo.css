@@ -9,7 +9,7 @@ body {
 .form {
   display: flex;
   flex-direction: column;
-  background-color: #f9f9f900;
+  background-color: #f9f9f9;
   margin-right: 70px;
 }
 .head {
@@ -29,6 +29,7 @@ body {
 .btn-0:hover {
   cursor: pointer;
   transform: scale(110%);
+  transition: 0.5s;
 }
 .spn-1 {
   font-family: "Helvetica Neue";
@@ -130,6 +131,7 @@ body {
 .btn:hover {
   cursor: pointer;
   transform: scale(105%);
+  transition: 0.5s;
 }
 .btn {
   margin-left: 5px;
@@ -192,11 +194,16 @@ body {
   height: 48px;
   align-self: end;
   margin-right: 24px;
-  margin-top: 15%;
+  margin-top: 10%;
   background: #6b40e3;
   border-radius: 4px;
   color: white;
   font-size: 16px;
   text-align: center;
   border: none;
+}
+.btn-3:hover {
+  cursor: pointer;
+  transform: scale(105%);
+  transition: 0.5s;
 }

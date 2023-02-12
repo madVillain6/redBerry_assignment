@@ -58,3 +58,8 @@ body {
   border: none;
   font-weight: 500;
 }
+.btn-1:hover {
+  cursor: pointer;
+  transform: scale(110%);
+  transition: 0.5s;
+}
