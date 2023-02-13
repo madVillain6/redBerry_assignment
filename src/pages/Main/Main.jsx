@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import PersonalInfo from "./sub-pages/personal-info/PersonalInfo";
 import Resume from "../Resume/Resume";
 import Experience from "./sub-pages/experience/Experience";
@@ -10,6 +8,10 @@ import "./main.css";
 import { ROUTES } from "../../constants";
 import MainProvider from "./main-context";
 import Education from "./sub-pages/education/Education";
+import { MainContainer, MainLeft, MainRight } from "./styles";
+import { BackButton } from "../../components/BackButton";
+import { StarImg } from "../Resume/styles";
+import Star from "../../images/star.svg";
 
 const router = [
   {
@@ -35,24 +37,26 @@ const router = [
 ];
 
 export default function Main() {
-  const location = useLocation();
-  console.log(location);
   return (
     <MainProvider>
-      <Container>
-        <Row>
-          <Col md={7}>
+      <MainContainer>
+        <BackButton />
+        <MainLeft>
+          <Container>
             <Routes>
               {router.map((route) => (
                 <Route {...route} />
               ))}
             </Routes>
-          </Col>
-          <Col md={location.pathname === "/personal-info/resume" ? 12 : 5}>
+          </Container>
+        </MainLeft>
+        <MainRight>
+          <Container>
             <Resume />
-          </Col>
-        </Row>
-      </Container>
+          </Container>
+          <StarImg src={Star} alt="" />
+        </MainRight>
+      </MainContainer>
     </MainProvider>
   );
 }

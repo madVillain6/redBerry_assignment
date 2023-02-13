@@ -1,15 +1,30 @@
 import styled from "styled-components";
 
-export const Picture = styled.div`
-  width: 200px;
-  height: 200px;
+const PictureContainer = styled.div`
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+`;
+
+const PictureContent = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   border-radius: 50%;
-  left: 78%;
-  top: 9%;
   background-image: ${(props) => `url(${props.img})`};
   background-size: cover;
   background-position: center;
 `;
+
+export const Picture = ({ img, ...props }) => {
+  return (
+    <PictureContainer {...props}>
+      <PictureContent img={img} />
+    </PictureContainer>
+  );
+};
 
 export const NameBar = styled.h1`
   font-family: "Helvetica Neue";
@@ -77,4 +92,12 @@ export const Paragraph = styled.p`
   text-transform: capitalize;
   color: #000000;
   margin-top: 16px;
+`;
+
+export const StarImg = styled.img`
+  margin-top: auto;
+  width: 42px;
+  height: 42px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 `;

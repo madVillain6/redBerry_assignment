@@ -93,16 +93,21 @@ const Resume = () => {
 
             {experienceForm.values.map((experience, index) => (
               <Fragment key={index}>
-                <div>
-                  <StyledSpn>
-                    {experience.position}, {experience.employer}
-                  </StyledSpn>
-                </div>
-                <div>
-                  <DateSpn>
-                    {experience.start_date} - {experience.due_date}
-                  </DateSpn>
-                </div>
+                {experience.position && experience.employer && (
+                  <div>
+                    <StyledSpn>
+                      {experience.position}, {experience.employer}
+                    </StyledSpn>
+                  </div>
+                )}
+
+                {experience.start_date && experience.due_date && (
+                  <div>
+                    <DateSpn>
+                      {experience.start_date} - {experience.due_date}
+                    </DateSpn>
+                  </div>
+                )}
 
                 <Paragraph>{experience.description}</Paragraph>
               </Fragment>
