@@ -13,9 +13,11 @@ const Dropdown = ({ placeholder, options, name, value, onChange }) => {
         value={value}
         onChange={onChange}
       >
+        <option value="">აირჩიეთ ხარისხი</option>
+        {/* little hack to save id and title together */}
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
+          <option key={option.id} value={`${option.id}:${option.title}`}>
+            {option.title}
           </option>
         ))}
       </Form.Select>

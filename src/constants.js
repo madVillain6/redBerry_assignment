@@ -5,6 +5,7 @@ export const ROUTES = {
   mainExperience: "/experience",
   mainEducation: "/education",
   mainResume: "/resume",
+  resumeOnly: "/resume",
 
   _getMainPath(route) {
     return this.personalInfo.replace("/*", route);

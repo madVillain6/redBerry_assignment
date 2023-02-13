@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -9,6 +9,7 @@ import * as S from "../../../../components/input";
 import Input from "../../../../components/input/Input";
 import Dropdown from "../../../../components/DropDown";
 import { StepHeader } from "../../../../components/StepHeader";
+import { apiFetchDegrees } from "../../../../api";
 
 export default function Education() {
   const {
@@ -21,21 +22,15 @@ export default function Education() {
       handleSubmit,
     },
   } = useContext(MainContext);
+  console.log("errors", errors);
 
-  const options = [
-    { value: "საშუალო სკოლის დიპლომი", label: "საშუალო სკოლის დიპლომი" },
-    {
-      value: "ზოგადსაგანმანათლებლო დიპლომი",
-      label: "ზოგადსაგანმანათლებლო დიპლომი",
-    },
-    { value: "ბაკალავრი", label: "ბაკალავრი" },
-    { value: "მაგისტრი", label: "მაგისტრი" },
-    { value: "დოქტორი", label: "დოქტორი" },
-    { value: "ასოცირებული ხარისხი", label: "ასოცირებული ხარისხი" },
-    { value: "სტუდენტი", label: "სტუდენტი" },
-    { value: "კოლეჯი (ხარისხის გარეშე)", label: "კოლეჯი (ხარისხის გარეშე)" },
-    { value: "სხვა", label: "სხვა" },
-  ];
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    apiFetchDegrees().then((degrees) => {
+      setOptions(degrees);
+    });
+  }, []);
 
   const navigate = useNavigate();
 

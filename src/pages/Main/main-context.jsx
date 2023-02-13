@@ -29,7 +29,10 @@ const MainProvider = ({ children }) => {
 
   const experienceForm = useExperienceForm();
 
-  const educationForm = useEducationForm();
+  const educationForm = useEducationForm({
+    personalData: personalInfoForm.values,
+    experienceData: experienceForm.values,
+  });
 
   return (
     <MainContext.Provider
