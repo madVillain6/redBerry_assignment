@@ -1,7 +1,10 @@
 import React, { Fragment } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import PersonalInfo from "./sub-pages/personal-info/PersonalInfo";
-import Resume from "./Resume";
+import Resume from "../Resume/Resume";
 import Experience from "./sub-pages/experience/Experience";
 import "./main.css";
 import { ROUTES } from "../../constants";
@@ -32,16 +35,24 @@ const router = [
 ];
 
 export default function Main() {
+  const location = useLocation();
+  console.log(location);
   return (
-    <div className="main">
-      <MainProvider>
-        <Routes>
-          {router.map((route) => (
-            <Route {...route} />
-          ))}
-        </Routes>
-        <Resume />
-      </MainProvider>
-    </div>
+    <MainProvider>
+      <Container>
+        <Row>
+          <Col md={7}>
+            <Routes>
+              {router.map((route) => (
+                <Route {...route} />
+              ))}
+            </Routes>
+          </Col>
+          <Col md={location.pathname === "/personal-info/resume" ? 12 : 5}>
+            <Resume />
+          </Col>
+        </Row>
+      </Container>
+    </MainProvider>
   );
 }

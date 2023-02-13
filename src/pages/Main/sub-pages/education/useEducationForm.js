@@ -1,8 +1,7 @@
-import { useFormik } from "formik";
-import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { ROUTES } from "../../../../constants";
+import { useCustomForm } from "../useCustomForm";
 
 const ERROR_MESSAGES = {
   min: "მინიმუმ 2 სიმბოლო",
@@ -25,34 +24,23 @@ const EducationItemSchema = Yup.object().shape({
 
 const EducationSchema = Yup.array().of(EducationItemSchema);
 
+const initialValues = [
+  {
+    institute: "",
+    degree: "",
+    due_date: "",
+    description: "",
+  },
+];
+
 export const useEducationForm = () => {
   const LOCAL_STORAGE_KEY = "education";
   const navigate = useNavigate();
 
-  const initialValues = useMemo(() => {
-    const storedValues = localStorage.getItem(LOCAL_STORAGE_KEY);
-    return storedValues
-      ? JSON.parse(storedValues)
-      : [
-          {
-            institute: "",
-            degree: "",
-            due_date: "",
-            description: "",
-          },
-        ];
-  }, []);
-
-  const form = useFormik({
+  return useCustomForm({
+    storageKey: LOCAL_STORAGE_KEY,
     initialValues,
-    onSubmit: () => navigate(ROUTES.getMainResumePath()),
     validationSchema: EducationSchema,
-    enableReinitialize: true,
+    onSubmit: () => navigate(ROUTES.getMainResumePath()),
   });
-
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(form.values));
-  }, [form.values]);
-
-  return form;
 };

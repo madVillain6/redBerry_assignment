@@ -1,5 +1,6 @@
 import React from "react";
-import { StyledInput, StyledSpan } from "./styled";
+import { Form, FormControl, Button } from "react-bootstrap";
+import { StyledLabel } from "./styled";
 
 const Input = ({
   label,
@@ -11,25 +12,34 @@ const Input = ({
   touched,
   error,
 }) => {
+  const isFile = type === "file";
+  const isTextarea = type === "textarea";
+
   return (
-    <div className="submit-field">
-      <StyledSpan error={touched && error}>{label}</StyledSpan>
+    <Form.Group>
+      <StyledLabel error={touched && error}>{label}</StyledLabel>
 
-      {type === "file" && <label htmlFor={name}>{placeholder}</label>}
+      {isFile && (
+        <Button>
+          <label htmlFor={name}>{placeholder}</label>
+        </Button>
+      )}
 
-      <StyledInput
-        className="inp-1"
+      <FormControl
         type={type}
         placeholder={placeholder}
         name={name}
         id={name}
-        value={type === "file" ? undefined : value}
+        value={isFile ? undefined : value}
         onChange={onChange}
-        accept={type === "file" ? "image/png, image/jpeg" : undefined}
+        accept={isFile ? "image/png, image/jpeg" : undefined}
+        style={{ display: isFile ? "none" : "block" }}
+        isInvalid={touched && error}
+        as={isTextarea ? "textarea" : undefined}
       />
 
-      {touched && error && <span className="spn-4">{error}</span>}
-    </div>
+      {touched && error && <div>{error}</div>}
+    </Form.Group>
   );
 };
 

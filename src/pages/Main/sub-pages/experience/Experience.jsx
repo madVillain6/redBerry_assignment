@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../../../constants";
+import Form from "react-bootstrap/Form";
 import { MainContext } from "../../main-context";
 import * as S from "../../../../components/input";
 import Input from "../../../../components/input/Input";
-import Back from "../../../../images/Group 4.svg";
+import { Col, Row } from "react-bootstrap";
+import { StepHeader } from "../../../../components/StepHeader";
 
 export default function Experience() {
   const navigate = useNavigate();
@@ -20,74 +21,92 @@ export default function Experience() {
   } = useContext(MainContext);
 
   return (
-    <S.Wrapper>
-      <S.HeadDiv>
-        <S.HeadBtn onClick={() => navigate(ROUTES.landingPage)}>
-          <img src={Back} alt="back" />
-        </S.HeadBtn>
-        <S.HeadSpan>გამოცდილება</S.HeadSpan>
-        <S.HeadSpan2>2/3</S.HeadSpan2>
-      </S.HeadDiv>
-      <S.BlackLine></S.BlackLine>
+    <Form>
+      <Row className="mt-5">
+        <Col>
+          <StepHeader title="გამოცდილება" step={2} />
+        </Col>
+      </Row>
+
       {values.map((experience, index) => {
         const itemErrors = errors[index] || {};
         const itemTouched = touched[index] || {};
         return (
-          <form key={index}>
-            <Input
-              label="თანამდებობა"
-              type="text"
-              placeholder="თანამდებობა"
-              name={`${index}.position`}
-              value={experience.position}
-              onChange={handleChange}
-              touched={itemTouched.position}
-              error={itemErrors.position}
-            />
-            <Input
-              label="დამსაქმებელი"
-              type="text"
-              placeholder="დამსაქმებელი"
-              name={`${index}.employer`}
-              value={experience.employer}
-              onChange={handleChange}
-              touched={itemTouched.employer}
-              error={itemErrors.employer}
-            />
-            <Input
-              label="დაწყების რიცხვი"
-              type="date"
-              placeholder="დაწყების რიცხვი"
-              name={`${index}.start_date`}
-              value={experience.start_date}
-              onChange={handleChange}
-              touched={itemTouched.start_date}
-              error={itemErrors.start_date}
-            />
-            <Input
-              label="დასრულების რიცხვი"
-              type="date"
-              placeholder="დაწყების რიცხვი"
-              name={`${index}.due_date`}
-              value={experience.due_date}
-              onChange={handleChange}
-              touched={itemTouched.due_date}
-              error={itemErrors.due_date}
-            />
-            <Input
-              label="აღწერა"
-              type="textarea"
-              placeholder="აღწერა"
-              name={`${index}.description`}
-              value={experience.description}
-              onChange={handleChange}
-              touched={itemTouched.description}
-              error={itemErrors.description}
-            />
-          </form>
+          <Fragment key={index}>
+            <Row className="mt-5">
+              <Col>
+                <Input
+                  label="თანამდებობა"
+                  type="text"
+                  placeholder="თანამდებობა"
+                  name={`${index}.position`}
+                  value={experience.position}
+                  onChange={handleChange}
+                  touched={itemTouched.position}
+                  error={itemErrors.position}
+                />
+              </Col>
+            </Row>
+            <Row className="mt-3">
+              <Col>
+                <Input
+                  label="დამსაქმებელი"
+                  type="text"
+                  placeholder="დამსაქმებელი"
+                  name={`${index}.employer`}
+                  value={experience.employer}
+                  onChange={handleChange}
+                  touched={itemTouched.employer}
+                  error={itemErrors.employer}
+                />
+              </Col>
+            </Row>
+            <Row className="mt-3">
+              <Col md={6}>
+                <Input
+                  label="დაწყების რიცხვი"
+                  type="date"
+                  placeholder="დაწყების რიცხვი"
+                  name={`${index}.start_date`}
+                  value={experience.start_date}
+                  onChange={handleChange}
+                  touched={itemTouched.start_date}
+                  error={itemErrors.start_date}
+                />
+              </Col>
+              <Col md={6}>
+                <Input
+                  label="დასრულების რიცხვი"
+                  type="date"
+                  placeholder="დაწყების რიცხვი"
+                  name={`${index}.due_date`}
+                  value={experience.due_date}
+                  onChange={handleChange}
+                  touched={itemTouched.due_date}
+                  error={itemErrors.due_date}
+                />
+              </Col>
+            </Row>
+            <Row className="mt-3">
+              <Col>
+                <Input
+                  label="აღწერა"
+                  type="textarea"
+                  placeholder="აღწერა"
+                  name={`${index}.description`}
+                  value={experience.description}
+                  onChange={handleChange}
+                  touched={itemTouched.description}
+                  error={itemErrors.description}
+                />
+              </Col>
+            </Row>
+
+            <S.GrayLine />
+          </Fragment>
         );
       })}
-      <S.GrayLine></S.GrayLine>
+
       <S.BlueBtn
         type="button"
         onClick={() =>
@@ -113,6 +132,6 @@ export default function Experience() {
           შემდეგი
         </S.NavBtn>
       </S.NavDiv>
-    </S.Wrapper>
+    </Form>
   );
 }

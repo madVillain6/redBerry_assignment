@@ -86,7 +86,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 60%;
-  height: 100%;
+  height: 100vh;
   background-color: #f9f9f9;
   align-items: baseline;
 `;
@@ -176,9 +176,14 @@ export const BlueBtn = styled.button`
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
+  :hover {
+    cursor: pointer;
+    transform: scale(110%);
+    transition: 0.5s;
+  }
 `;
 export const NavBtn = styled.button`
-  background-color: #6b40e3;
+  background-color: #7949ff;
   border-radius: 4px;
   font-family: "Helvetica Neue";
   font-style: normal;
@@ -190,6 +195,12 @@ export const NavBtn = styled.button`
   border: none;
   width: 30%;
   height: 48px;
+  :hover {
+    cursor: pointer;
+    transform: scale(110%);
+    transition: 0.5s;
+    background-color: #512faf;
+  }
 `;
 export const NavDiv = styled.div`
   margin-top: 60px;
@@ -232,28 +243,19 @@ export const DropItem = styled.div`
   }
 `;
 
-export const NameBar = styled.h1`
-  font-family: "Helvetica Neue";
-  font-family: "Helvetica Neue";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 34px;
-  line-height: 42px;
-  color: #f93b1d;
-`;
-
 export const ResumeWraper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 40%;
+  width: 60%;
   height: 100%;
   background-color: white;
   align-items: baseline;
   background-color: white;
-  margin-top: 50px;
-  margin-right: 75px;
+  margin: 50px auto 0;
   max-width: 822px;
+  border: 0.8px solid #000000;
+  padding: 48px 80px;
 `;
 
 export const Contact = styled.p`
@@ -263,6 +265,7 @@ export const Contact = styled.p`
   font-size: 18px;
   line-height: 21px;
   color: #1a1a1a;
+  display: flex;
 `;
 export const TxtAreaPromt = styled.h2`
   font-family: "Helvetica Neue";
@@ -286,19 +289,6 @@ export const TxtArea = styled.p`
 export const AboutMe = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-export const Picture = styled.div`
-  border: 1px solid black;
-  width: 200px;
-  height: 200px;
-  border-radius: 133px;
-  position: absolute;
-  left: 78%;
-  top: 9%;
-  background-image: ${(props) => `url(${props.img})`};
-  background-size: cover;
-  background-position: center;
 `;
 export const GrayLine1 = styled.div`
   border: 1px solid #c1c1c1;
