@@ -22,7 +22,6 @@ export default function Education() {
       handleSubmit,
     },
   } = useContext(MainContext);
-  console.log("errors", errors);
 
   const [options, setOptions] = useState([]);
 

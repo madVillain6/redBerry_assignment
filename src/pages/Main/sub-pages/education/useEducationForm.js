@@ -40,23 +40,22 @@ export const useEducationForm = ({ personalData, experienceData }) => {
     initialValues,
     validationSchema: EducationSchema,
     onSubmit: async () => {
-      console.log("start", educationData.values);
-      const image = await fetch(personalData.image).then((r) => r.blob());
-      console.log("image");
+      const imageb64 = localStorage.getItem("image");
+      const image = await fetch(imageb64).then((res) => res.blob());
 
-      const x = await apiSubmitResume({
+      await apiSubmitResume({
         ...personalData,
-        image,
+        image: image,
         experiences: experienceData,
         educations: educationData.values.map(({ degree, ...item }) => ({
           ...item,
           degree_id: parseInt(degree.split(":")[0]),
         })),
       });
-      console.log("x", x);
 
-      // localStorage.clear();
-      navigate(ROUTES.resumeOnly);
+      localStorage.clear();
+
+      navigate(ROUTES.getMainResumePath());
     },
   });
 

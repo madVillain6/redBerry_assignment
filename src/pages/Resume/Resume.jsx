@@ -133,7 +133,7 @@ const Resume = () => {
               <Fragment key={index}>
                 <div>
                   <StyledSpn>
-                    {education.institute}, {education.degree}
+                    {education.institute}, {education.degree.split(":")[1]}
                   </StyledSpn>
                 </div>
                 <div>

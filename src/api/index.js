@@ -1,20 +1,18 @@
 const API_URL = "https://resume.redberryinternship.ge/api";
 
 const apiSubmitResume = async (data) => {
+  const formData = new FormData();
+
+  for (let key in data) {
+    formData.append(key, data[key]);
+  }
+
   const response = await fetch(`${API_URL}/cvs`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(data),
+    body: formData,
   });
-  console.log("before result");
 
-  const result = await response.json();
-  console.log("result", result);
-
-  return result;
+  return response.status;
 };
 
 const apiFetchDegrees = async () => {
